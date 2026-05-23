@@ -11,3 +11,9 @@ include an edit and submit button for each section or for the whole CV. The subm
 - Netlify
 - Vercel
 - Cloudflare Pages
+
+Resources:
+
+- https://heroicons.com/solid: education.svg, user.svg, work.svg
+
+- https://www.magnific.com/free-vector/naive-wildlife-stickers-collection_15857820.htm - profile.svg

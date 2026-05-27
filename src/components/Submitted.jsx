@@ -1,7 +1,7 @@
 const SubmittedForm = ({info}) => {
   return (
     <div className="submitted-form">
-      <div class='general-information'>
+      <div className='general-information'>
         <h1>{info.person_name}</h1>
         <div className="contact-info">
           <div>
@@ -28,7 +28,7 @@ const SubmittedForm = ({info}) => {
                   <p>{item.date_from} — {item.date_until}</p>
                 </div>
                 <div className="experience-info"></div>
-                <p>{item.name}</p>
+                <p>{item.school_name}</p>
                 <p>{item.study}</p>
 
               </div>

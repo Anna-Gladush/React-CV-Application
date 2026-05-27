@@ -3,7 +3,7 @@ import SubmittedForm from './components/Submitted'
 // import Form from './components/Form'
 import { useState } from 'react';
 
-const date = new Date().toLocaleDateString()
+const date = '2026-05-27'
 const personalInfo = {
   person_name: 'Anna Gladush',
   email: '********@gmail.com',
@@ -11,13 +11,13 @@ const personalInfo = {
   adress: 'Honolulu, HI',
   school: [{
     id: crypto.randomUUID(),
-    name: 'BFU',
+    school_name: 'BFU',
     study: 'Bioengineering and Bioinformatics',
     date_from: date,
     date_until: date,
   }, {
     id: crypto.randomUUID(),
-    name: 'BFU',
+    school_name: 'BFU',
     study: 'Bioengineering and Bioinformatics',
     date_from: date,
     date_until: date,
@@ -40,60 +40,79 @@ const personalInfo = {
 }
 
 function App() {
-  // const [isSent, setIsSent] = useState(false);
-  // const [person, setPerson] = useState(personalInfo);
-
-
-
-  // const handleSubmit = () => {
-  // }
-
   const [person, setPerson] = useState(personalInfo)
 
-  function handleNameChange(e) {
-    setPerson({...person, person_name: e.target.value});
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setPerson({
+      ...person,
+      [name]: value,
+    });
   }
-  function handleEmailChange(e) {
-    setPerson({...person, email: e.target.value});
-  }  
-  function handlePhoneChange(e) {
-    setPerson({...person, phone: e.target.value});
+
+  const handleComplexInputChange = (e, id) => {
+    const {name, className, value} = e.target
+    // console.log(name, className, value, id, person[className])
+    setPerson({
+      ...person,
+      [className]: person[className].map(item => 
+        item.id === id ? 
+        {...item, [name]: value} : item
+      )
+    })
   }
-  function handleAdressChange(e) {
-    setPerson({...person, adress: e.target.value});
-  }
-  // eslint-disable-next-line no-unused-vars
-  function handleDateChange(e) {
-    // setPerson({...person, person.school[0].date_from: e.target.value});
-  }
+
   return (
     <>
       <div>
         <form>
           <div className='personal-information'>
-            <label>Full Name<span className='asterisk'>*</span>: <input type="text" value={person.person_name} onChange={handleNameChange}/></label>
-            <label>E-mail<span className='asterisk'>*</span>: <input type="email" value={person.email} onChange={handleEmailChange}/></label>
-            <label>Phone<span className='asterisk'>*</span>: <input type="tel" value={person.phone} onChange={handlePhoneChange}/></label>
-            <label>Adress<span className='asterisk'>*</span>: <input type="text" value={person.adress} onChange={handleAdressChange}/></label>
+            <label>Full Name<span className='asterisk'>*</span>: 
+              <input type="text" value={person.person_name} name='person_name' onChange={handleInputChange}/>
+            </label>
+            <label>E-mail<span className='asterisk'>*</span>: 
+              <input type="email" value={person.email} name='email' onChange={handleInputChange}/>
+            </label>
+            <label>Phone<span className='asterisk'>*</span>: 
+              <input type="tel" value={person.phone} name='phone' onChange={handleInputChange}/>
+            </label>
+            <label>Adress<span className='asterisk'>*</span>: 
+              <input type="text" value={person.adress} name='adress' onChange={handleInputChange}/>
+            </label>
           </div>
           <div className='education'>
-            {/* school name, title of study, field of study */}
-            {/* <label>School: <input type="text" value={person.school} onChange={handleFirstNameChange}/></label>
-            <label>Degree: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-            <label>Start Date: <input type="text" value={person.school.date_from} onChange={handleFirstNameChange}/></label>
-            <label>End Date: <input type="text" value={person.school.date_from} onChange={handleFirstNameChange}/></label>*/}
-            <label>Location: <input type="text" value={person.school[0].date_from} onChange={handleDateChange}/></label> 
+            {person.school.map(school => {
+              const id = school.id
+              // console.log(id)
+              // console.log(person.school)
+              return (
+                <div className='school' key={id} id={id}>
+                  <label>School: <input type="text" value={school.school_name} className='school' name='school_name' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>Degree: <input type="text" value={school.study} className='school' name='study' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>From: <input type="date" value={school.date_from} className='school' name='date_from' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>To: <input type="date" value={school.date_until} className='school' name='date_until' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                </div>
+              )
+            })}
             <button className='add-school'>Add new sk</button>
           </div>
-              {/* company name, position title, main responsibilities of your jobs, date from and until */}
             <div className='experience'>
-              {/* <label>Company Name: <input type="text" value={firstName} onChange={handleFirstNameChange}/></label>
-              <label>Position Title: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-              <label>Main Responsibilities of Your Job: <input type="text" value={age} onChange={handleFirstNameChange}/></label>
-              <label>From: <input type="date" value={age} onChange={handleFirstNameChange}/></label>
-              <label>To: <input type="date" value={age} onChange={handleFirstNameChange}/></label> */}
+              {person.company.map(company => {
+              const id = company.id
+              // console.log(id)
+              // console.log(person.company)
+              return (
+                <div className='school' key={id} id={id}>
+                  <label>Company Name: <input type="text" value={company.company_name} className='company' name='company_name' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>Position Title: <input type="text" value={company.position_title} className='company' name='position_title' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>Main Responsibilities of Your Job:  <input type="text" value={company.main_responsibilities} className='company' name='main_responsibilities' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>From: <input type="date" value={company.date_from} className='company' name='date_from' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                  <label>To: <input type="date" value={company.date_until} className='company' name='date_until' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+                </div>
+              )
+            })}
             <button className='add-work'>Add new wk</button>
-
             </div>
         </form>
       </div>

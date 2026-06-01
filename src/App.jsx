@@ -1,6 +1,6 @@
 // eslint-disable no-unused-vars
 import SubmittedForm from './components/Submitted'
-// import Form from './components/Form'
+import Form from './components/Form'
 import { useState } from 'react';
 
 const date = '2026-05-27'
@@ -84,15 +84,12 @@ function App() {
           <div className='education'>
             {person.school.map(school => {
               const id = school.id
-              // console.log(id)
-              // console.log(person.school)
+              const school_name = school.school_name
+              const study = school.study
+              const date_from = school.date_from
+              const date_until = school.date_until
               return (
-                <div className='school' key={id} id={id}>
-                  <label>School: <input type="text" value={school.school_name} className='school' name='school_name' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>Degree: <input type="text" value={school.study} className='school' name='study' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>From: <input type="date" value={school.date_from} className='school' name='date_from' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>To: <input type="date" value={school.date_until} className='school' name='date_until' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                </div>
+                <Form type='school' id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
               )
             })}
             <button className='add-school'>Add new sk</button>
@@ -100,16 +97,13 @@ function App() {
             <div className='experience'>
               {person.company.map(company => {
               const id = company.id
-              // console.log(id)
-              // console.log(person.company)
+              const company_name = company.company_name
+              const position_title = company.position_title
+              const responsibility = company.main_responsibilities
+              const date_from = company.date_from
+              const date_until = company.date_until
               return (
-                <div className='school' key={id} id={id}>
-                  <label>Company Name: <input type="text" value={company.company_name} className='company' name='company_name' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>Position Title: <input type="text" value={company.position_title} className='company' name='position_title' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>Main Responsibilities of Your Job:  <input type="text" value={company.main_responsibilities} className='company' name='main_responsibilities' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>From: <input type="date" value={company.date_from} className='company' name='date_from' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                  <label>To: <input type="date" value={company.date_until} className='company' name='date_until' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
-                </div>
+                <Form type='company' id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
               )
             })}
             <button className='add-work'>Add new wk</button>

@@ -1,29 +1,16 @@
-const Form = () => {
+const Form = ({type, id, handleComplexInputChange, name1, name2, date_from, date_until, responsibility=null}) => {
   return (
-    <form>
-      {/* <div className='general'> */}
-        {/* name, email, phone */}
-        {/* <label>Full Name: <input type="text" value={name} onChange={handleFirstNameChange}/></label>
-        <label>E-mail: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-        <label>Phone: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-        <label>Adress: <input type="number" value={age} onChange={handleAgeChange}/></label>
+    <>
+      <div className={type} key={id} id={id}>
+        <label>{type === 'school' ? 'School: ' : 'Company Name: ' }<input type="text" value={name1} className={type === 'school' ? 'school' : 'company'} name={type === 'school' ? 'school_name' : 'company_name'} onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+        <label>Degree: <input type="text" value={name2} className={type === 'school' ? 'school' : 'company'} name={type === 'school' ? 'study' : 'position_title'} onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+
+        { responsibility && <label>Main Responsibilities of Your Job:  <input type="text" value={responsibility} className='company' name='main_responsibilities' onChange={(e) => {handleComplexInputChange(e, id)}}/></label> }
+
+        <label>From: <input type="date" value={date_from} className={type === 'school' ? 'school' : 'company'} name='date_from' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
+        <label>To: <input type="date" value={date_until} className={type === 'school' ? 'school' : 'company'} name='date_until' onChange={(e) => {handleComplexInputChange(e, id)}}/></label>
       </div>
-      <div className='education'> */}
-        {/* school name, title of study, field of study */}
-        {/* <label>School Name: <input type="text" value={firstName} onChange={handleFirstNameChange}/></label>
-        <label>Title of Study: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-        <label>Date of Study: <input type="text" value={age} onChange={handleFirstNameChange}/></label>
-      </div> */}
-        {/* company name, position title, main responsibilities of your jobs, date from and until */}
-      {/* <div className='experience'>
-        <label>Company Name: <input type="text" value={firstName} onChange={handleFirstNameChange}/></label>
-        <label>Position Title: <input type="text" value={lastName} onChange={handleLastNameChange}/></label>
-        <label>Main Responsibilities of Your Job: <input type="text" value={age} onChange={handleFirstNameChange}/></label>
-        <label>From: <input type="date" value={age} onChange={handleFirstNameChange}/></label>
-        <label>To: <input type="date" value={age} onChange={handleFirstNameChange}/></label>
-      </div>
-      <button onClick={handleSubmit}>Submit</button> */}
-    </form>
+    </>
   )
 }
 

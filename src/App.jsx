@@ -1,5 +1,5 @@
 // eslint-disable no-unused-vars
-import SubmittedForm from './components/Submitted'
+import MainView from './components/MainView'
 import Form from './components/Form'
 import { useState } from 'react';
 
@@ -15,12 +15,6 @@ const personalInfo = {
     study: 'Bioengineering and Bioinformatics',
     date_from: date,
     date_until: date,
-  }, {
-    id: crypto.randomUUID(),
-    school_name: 'BFU',
-    study: 'Bioengineering and Bioinformatics',
-    date_from: date,
-    date_until: date,
   }],
   company: [{
     id: crypto.randomUUID(),
@@ -29,14 +23,7 @@ const personalInfo = {
     main_responsibilities: 'Coding',
     date_from: date,
     date_until: date,
-  }, {
-    id: crypto.randomUUID(),
-    company_name: 'None',
-    position_title: 'Software Engineer',
-    main_responsibilities: 'Coding',
-    date_from: date,
-    date_until: date,
-  } ]
+  }]
 }
 
 function App() {
@@ -120,7 +107,11 @@ function App() {
                 <Form type='school' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
               )
             })}
-            <button name="school" onClick={handleAdd}>Add new sk</button>
+            <div className='buttons'>
+              <button className="add" name="school" onClick={handleAdd}>Add new sk</button>
+              <button className="delete" name="school" onClick={handleAdd}>Delete sk</button>
+              <button className="submit" name="school" onClick={handleAdd}>Submit sk</button>
+            </div>
           </div>
           </form>
         <form>
@@ -136,11 +127,15 @@ function App() {
                 <Form type='company' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
               )
             })}
-            <button name="company" onClick={handleAdd}>Add new wk</button>
+            <div className='buttons'>
+              <button name="company" onClick={handleAdd}>Add new wk</button>
+              <button className="delete" name="company" onClick={handleAdd}>Delete sk</button>
+              <button className="submit" name="company" onClick={handleAdd}>Submit sk</button>
+            </div>
             </div>
         </form>
       </div>
-      <SubmittedForm info={person}/>
+      <MainView info={person}/>
     </>
   )
 }

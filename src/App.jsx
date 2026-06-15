@@ -62,6 +62,31 @@ function App() {
       )
     })
   }
+  
+  const handleAdd = (e) => {
+    e.preventDefault()
+    const { name } = e.target
+    const value = name === "school" ?  {
+      id: crypto.randomUUID(),
+      school_name: '',
+      study: '',
+      date_from: date,
+      date_until: date
+    } : {
+    id: crypto.randomUUID(),
+    company_name: '',
+    position_title: '',
+    main_responsibilities: '',
+    date_from: date,
+    date_until: date,
+  } 
+    setPerson(prev => ({
+      ...prev,
+      [name]: [...prev[name], value]
+    }))
+    console.log(person[name])
+
+  }
 
   return (
     <>
@@ -81,7 +106,10 @@ function App() {
               <input type="text" value={person.adress} name='adress' onChange={handleInputChange}/>
             </label>
           </div>
+        </form>
+        <form>
           <div className='education'>
+            {console.log(person.school)}
             {person.school.map(school => {
               const id = school.id
               const school_name = school.school_name
@@ -89,11 +117,13 @@ function App() {
               const date_from = school.date_from
               const date_until = school.date_until
               return (
-                <Form type='school' id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
+                <Form type='school' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
               )
             })}
-            <button className='add-school'>Add new sk</button>
+            <button name="school" onClick={handleAdd}>Add new sk</button>
           </div>
+          </form>
+        <form>
             <div className='experience'>
               {person.company.map(company => {
               const id = company.id
@@ -103,10 +133,10 @@ function App() {
               const date_from = company.date_from
               const date_until = company.date_until
               return (
-                <Form type='company' id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
+                <Form type='company' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
               )
             })}
-            <button className='add-work'>Add new wk</button>
+            <button name="company" onClick={handleAdd}>Add new wk</button>
             </div>
         </form>
       </div>

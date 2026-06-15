@@ -1,3 +1,7 @@
+import emailIcon from "../assets/email.svg";
+import phoneIcon from "../assets/phone.svg";
+import mapIcon from "../assets/map.svg";
+
 const SubmittedForm = ({info}) => {
   return (
     <div className="submitted-form">
@@ -5,15 +9,15 @@ const SubmittedForm = ({info}) => {
         <h1>{info.person_name}</h1>
         <div className="contact-info">
           <div>
-            <img src="email.svg" alt="mail icon" width={16}/>
+            <img src={emailIcon} alt="mail icon" width={16}/>
             <p>{info.email}</p>
           </div>
           <div>
-            <img src="phone.svg" alt="phone icon" width={16}/>
+            <img src={phoneIcon} alt="phone icon" width={16}/>
             <p>{info.phone}</p>
           </div>
           <div>
-            <img src="map.svg" alt="map icon" width={16}/>
+            <img src={mapIcon} alt="map icon" width={16}/>
             <p>{info.adress}</p>
           </div>
         </div>

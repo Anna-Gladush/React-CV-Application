@@ -1,9 +1,14 @@
+@font-face {
+  font-family: NotoSans;
+  src: url(../fonts/NotoSans-Regular.ttf);
+}
+
 :root {
-  --resume-font: ;
-  --resume-header-color: ;
-  --resume-main-bg: ;
-  --resume-section-bg: ;
-  --resume-accent-color: ;
+  --resume-font: monospace;
+  --resume-header-color: white;
+  --resume-main-bg: #f3f4f6;
+  --resume-section-bg: rgba(14, 55, 78, 0.07);
+  --resume-accent-color: #0e374e;
 }
 
 
@@ -11,18 +16,122 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: monospace;
+  font-size: 1rem;
 }
 
 #root {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--resume-font);
+
+}
+
+body {
+  background-color: var(--resume-main-bg);
+
 }
 form {
-  display: flex;
-  flex-direction: column;
   width: 25vw;
 }
 label {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+}
+
+.form,
+.submitted-form {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* text-align: center; */
+  width: 595.28px;
+  height: 841.89px;
+  background-color: white;
+}
+
+.general-information,
+.sections {
+  width: 100%;
+  background-color: white;
+
+}
+
+.general-information {
+  background-color: var(--resume-accent-color);
+  color: var(--resume-header-color);
+}
+
+.sections h2 {
+  background-color: var(--resume-section-bg);
+  color: var(--resume-accent-color);
+}
+.contact-info div{
+  display: flex;
+}
+
+.submit {
+
+}
+
+svg {
+  width: 16px;
+}
+
+.customize {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 150px;
+  
+}
+
+.customize button.settings {
+  background-color: transparent;
+  border: none;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.customize button.settings:active,
+img.rotate {
+  transform: rotate(-75deg)
+}
+
+.font div{
+  display: flex;
+}
+.font-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.font-btn.serif {
+  font-family: serif;
+}
+
+.font-btn.mono {
+  font-family: monospace;
+}
+
+.font-btn.sans {
+  font-family: NotoSans;
+}
+
+.font-btn > span {
+  color: var(--resume-accent-color);
+}
+
+.font-btn.sans {
+  font-size: small;
+
 }

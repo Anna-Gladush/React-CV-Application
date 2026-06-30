@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { useState } from 'react';
+
 import MainView from './components/MainView'
 import Form from './components/Form'
-import { useState } from 'react';
+import Customize from './components/Customize';
+import icon from './assets/settings.svg'
 
 const date = '2026-05-27'
 const personalInfo = {
@@ -29,6 +32,7 @@ const personalInfo = {
 function App() {
   const [person, setPerson] = useState(personalInfo)
   const [submitted, setSubmitted] = useState(false)
+  const [settings, setSettings] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -92,11 +96,21 @@ function App() {
     setSubmitted(prev => !prev)
   }
 
+  const handleSettings = () => {
+    setSettings(prev => !prev)
+  }
 
   return (
     <>
-      {!submitted && <div>
+    <div className='customize'>
+      <button className='settings' onClick={handleSettings}><img className="rotate" src={icon} alt="settings icon" height={50} width={50}/></button>
+      {settings ? <Customize /> : ""}
+    </div>
+
+    {!submitted && 
+      <div className='form'>
         <form>
+          <h1>CV BUILDER</h1>
           <div className='personal-information'>
             <label>Full Name<span className='asterisk'>*</span>: 
               <input type="text" value={person.person_name} name='person_name' onChange={handleInputChange}/>
@@ -156,10 +170,11 @@ function App() {
         <button className='submit' onClick={handleSubmit}>Submit</button>
       </div>}
         
-      {submitted && (
-        <>
+      {submitted && (<>
+        <div className='submitted-form'>
           <MainView info={person}/> 
-          <button className='submit' onClick={handleSubmit}>Edit</button>
+        </div>
+        <button className='submit' onClick={handleSubmit}>Edit</button>
         </>
         )}
     </>

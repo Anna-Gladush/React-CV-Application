@@ -8,7 +8,7 @@
   --resume-header-color: white;
   --resume-main-bg: #f3f4f6;
   --resume-section-bg: rgba(14, 55, 78, 0.07);
-  --resume-accent-color: #0e374e;
+  --resume-accent-color: #f49f9f;
 }
 
 
@@ -25,7 +25,21 @@
   justify-content: center;
   align-items: center;
   font-family: var(--resume-font);
+  height: 100vh;
+}
 
+h2 svg {
+  margin-right: 20px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+button, 
+input {
+  font-family: var(--resume-font);
 }
 
 body {
@@ -35,45 +49,79 @@ body {
 form {
   width: 25vw;
 }
-label {
-  display: flex;
-  /* justify-content: space-around; */
-}
 
 .form,
 .submitted-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   /* text-align: center; */
-  width: 595.28px;
-  height: 841.89px;
+
+}
+
+label {
+  display: flex;
+  justify-content: flex-end;
+}
+
+textarea {
+  height: 84px;
+  width: 859px;
+}
+.submitted-form {
+  width: 21cm;
+  height: 29.7cm;
   background-color: white;
+}
+
+.submitted-form .sections h2,
+.submitted-form .sections p {
+  padding: 3px 20px;
+
+}
+
+.experience {
+  margin-bottom: 20px;
 }
 
 .general-information,
 .sections {
   width: 100%;
   background-color: white;
-
 }
 
 .general-information {
   background-color: var(--resume-accent-color);
   color: var(--resume-header-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin-block: 20px;
+  font-size: 2em;
 }
 
 .sections h2 {
   background-color: var(--resume-section-bg);
   color: var(--resume-accent-color);
 }
+
+.contact-info {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 10px;
+}
 .contact-info div{
   display: flex;
 }
 
-.submit {
-
+.exp div{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  padding-left: 10px;
 }
 
 svg {
@@ -133,5 +181,37 @@ img.rotate {
 
 .font-btn.sans {
   font-size: small;
+}
 
+.experience-info p:first-child {
+  font-weight: bold;
+}
+
+.add,
+.delete,
+.submit,
+.download {
+  margin: 10px;
+  background-color: var(--resume-accent-color);
+  color: var(--resume-header-color);
+  border: none;
+  width: 70px;
+  height: 30px;
+  border-radius: 40px;
+}
+
+.download {
+  width: 170px;
+}
+.add:active,
+.delete:active,
+.submit:active,
+.download:active {
+  box-shadow: #0e374e 1px 1px 1px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--resume-accent-color);
 }

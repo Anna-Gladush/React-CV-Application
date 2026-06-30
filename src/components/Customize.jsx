@@ -28,7 +28,6 @@ const Customize = () => {
           updateProperty("--resume-header-color", headerResumeCol);
           updateProperty("--resume-section-bg", sectionBackground);
           updateProperty("--resume-accent-color", color);
-          console.log(headerResumeCol)
           }}/></p>
       </div>
         <div className='font'>

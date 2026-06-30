@@ -15,6 +15,6 @@ Resources:
 
 - https://heroicons.com/solid: svgs
 
-![example-1](https://github.com/Anna-Gladush/rock-paper-scissors/blob/main/src/assets/2026-06-30-1.png)
+![example-1](https://github.com/Anna-Gladush/React-CV-Application/blob/main/src/assets/2026-06-30-1.png)
 
-![example-2](https://github.com/Anna-Gladush/rock-paper-scissors/blob/main/src/assets/2026-06-30-2.png)
+![example-2](https://github.com/Anna-Gladush/React-CV-Application/blob/main/src/assets/2026-06-30-2.png)

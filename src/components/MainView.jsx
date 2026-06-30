@@ -24,7 +24,7 @@ const MainView = ({info}) => {
       </div>
       <div className="sections">
         <div className="educational-experience">
-          <h3 className="header">Education</h3>
+          <h2 className="header">Education</h2>
           {info.school.map((item) => {
             return (
               <div key={item.id}>
@@ -40,7 +40,7 @@ const MainView = ({info}) => {
           })}
         </div>
         <div className="practical-experience">
-          <h3 className="header">Professional Experience</h3>
+          <h2 className="header">Professional Experience</h2>
           { info.company.map((item) => {
             return (
               <div key={item.id}>

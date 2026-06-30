@@ -1,4 +1,4 @@
-// eslint-disable no-unused-vars
+/* eslint-disable no-unused-vars */
 import MainView from './components/MainView'
 import Form from './components/Form'
 import { useState } from 'react';
@@ -28,6 +28,7 @@ const personalInfo = {
 
 function App() {
   const [person, setPerson] = useState(personalInfo)
+  const [submitted, setSubmitted] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,7 +64,7 @@ function App() {
     id: crypto.randomUUID(),
     company_name: '',
     position_title: '',
-    main_responsibilities: '',
+    main_responsibilities: ' ',
     date_from: date,
     date_until: date,
   } 
@@ -74,10 +75,27 @@ function App() {
     console.log(person[name])
 
   }
+  const handleDelete = (e) => {
+    e.preventDefault()
+
+    const {value, name} = e.target
+    const filtArr = person[name].filter(exp => exp.id !== value)
+
+    setPerson((prev => ({
+      ...prev,
+      [name]: filtArr
+    })))
+
+  }
+  
+  const handleSubmit = () => {
+    setSubmitted(prev => !prev)
+  }
+
 
   return (
     <>
-      <div>
+      {!submitted && <div>
         <form>
           <div className='personal-information'>
             <label>Full Name<span className='asterisk'>*</span>: 
@@ -96,6 +114,7 @@ function App() {
         </form>
         <form>
           <div className='education'>
+            <h2>Education</h2>
             {console.log(person.school)}
             {person.school.map(school => {
               const id = school.id
@@ -104,18 +123,19 @@ function App() {
               const date_from = school.date_from
               const date_until = school.date_until
               return (
-                <Form type='school' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
+                <div key={id}>
+                  <Form type='school'  id={id} handleComplexInputChange={handleComplexInputChange} name1={school_name} name2={study} date_from={date_from} date_until={date_until}/>
+                  <button value={id} className='delete' name="school" onClick={handleDelete}>Delete</button>
+                </div>
               )
             })}
-            <div className='buttons'>
-              <button className="add" name="school" onClick={handleAdd}>Add new sk</button>
-              <button className="delete" name="school" onClick={handleAdd}>Delete sk</button>
-              <button className="submit" name="school" onClick={handleAdd}>Submit sk</button>
-            </div>
+              <button className="add" name="school" onClick={handleAdd}>Add</button>
+            
           </div>
-          </form>
+        </form>
         <form>
             <div className='experience'>
+              <h2>Professional Experience</h2>
               {person.company.map(company => {
               const id = company.id
               const company_name = company.company_name
@@ -124,18 +144,24 @@ function App() {
               const date_from = company.date_from
               const date_until = company.date_until
               return (
-                <Form type='company' key={id} id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
+                <div key={id}>
+                  <Form type='company' id={id} handleComplexInputChange={handleComplexInputChange} name1={company_name} name2={position_title} date_from={date_from} date_until={date_until} responsibility={responsibility}/>
+                  <button value={id} className='delete' name="company" onClick={handleDelete}>Delete</button>
+                </div>
               )
             })}
-            <div className='buttons'>
-              <button name="company" onClick={handleAdd}>Add new wk</button>
-              <button className="delete" name="company" onClick={handleAdd}>Delete sk</button>
-              <button className="submit" name="company" onClick={handleAdd}>Submit sk</button>
-            </div>
+            <button className="add" name="company" onClick={handleAdd}>Add</button>
             </div>
         </form>
-      </div>
-      <MainView info={person}/>
+        <button className='submit' onClick={handleSubmit}>Submit</button>
+      </div>}
+        
+      {submitted && (
+        <>
+          <MainView info={person}/> 
+          <button className='submit' onClick={handleSubmit}>Edit</button>
+        </>
+        )}
     </>
   )
 }

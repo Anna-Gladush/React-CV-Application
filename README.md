@@ -1,20 +1,40 @@
 # CV Application
 
-From The Odin Project:
-A small application where users can input their information and generate a CV/résumé.
+A CV/résumé-application builder. You can choose accent color and font. To download PDF, please use desktop version.
 
-A section to add general information like name, email and phone number.
-A section to add your educational experience (school name, title of study and date of study)
-A section to add practical experience (company name, position title, main responsibilities of your jobs, date from and until when you worked for that company)
+## Technologies
 
-- Netlify
-- Vercel
-- Cloudflare Pages
+<ul>
+  <li><code>JavaScript</code></li>
+  <li><code>React</code></li>
 
-Resources:
+</ul>
 
-- https://heroicons.com/solid: svgs
+## Features
 
-![example-1](https://github.com/Anna-Gladush/React-CV-Application/blob/main/src/assets/2026-06-30-1.png)
+- Customizing your résumé's color pallete and font;
+- Downloading it as a PDF
 
-![example-2](https://github.com/Anna-Gladush/React-CV-Application/blob/main/src/assets/2026-06-30-2.png)
+## Live Preview
+
+<img src="./src/assets/CV Application.gif" alt="gif demo preview">
+
+![example-1](./src/assets/2026-06-30-1.png)
+
+![example-2](./src/assets/2026-06-30-2.png)
+
+## How to improve?
+
+- on mobile devices: trouble downloading correct view of the pdf.
+
+## Running the project
+
+- Clone the repository <code>git clone https://github.com/Anna-Gladush/React-CV-Application.git</code>
+
+- Install the packages using the command <code>npm install</code>
+
+- Run <code>npm run dev</code>
+
+## Resources
+
+- https://heroicons.com/solid: SVGs
